@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App.jsx";
 
 // styles
-import "./global-style/global.scss";
+import "./global-styles/global.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
