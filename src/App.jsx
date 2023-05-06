@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // context
 import { UserProvider } from "./contexts/UserContext";
@@ -12,7 +13,7 @@ export const App = () => {
     <>
       <UserProvider>
         <BrowserRouter>
-          <ToastContainer autoClose={2000} position="top-right" />
+          <ToastContainer autoClose={2000} position="top-right" style={{ fontSize: "1.6rem" }} />
           <RoutesApp />
         </BrowserRouter>
       </UserProvider>
