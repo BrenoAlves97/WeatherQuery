@@ -1,6 +1,62 @@
 .sidebar-container {
   position: fixed;
-  width: 200rem;
-  background: #0094bf;
+  width: 20rem;
+  background: #888585;
+  min-height: 100%;
   left: 0;
+
+  .sidebar-content {
+    width: 80%;
+    height: 95vh;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2.3rem;
+
+      span {
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+    }
+
+    button {
+      width: 80%;
+      padding: 0.6rem;
+      border: 2px solid transparent;
+      opacity: 0.8;
+      background: #ddd;
+      color: #282c39;
+      cursor: pointer;
+      transition: 0.5s all ease-out;
+      border-radius: 0.5rem;
+      font-size: 1.6rem;
+
+      &:hover {
+        border-color: #092551;
+        opacity: 1;
+      }
+
+      .spinner {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0 auto;
+        border: 0.2rem solid transparent;
+        border-top-color: #092551;
+        border-radius: 50%;
+        animation: 0.8s turn linear infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes turn {
+        to {
+          transform: rotate(360deg);
+          opacity: 1;
+        }
+      }
+    }
+  }
 }

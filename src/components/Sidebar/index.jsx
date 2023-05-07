@@ -9,10 +9,12 @@ export const Sidebar = () => {
     <div className="sidebar-container">
       <div className="sidebar-content">
         <h2>
-          Clima <span>tempo</span>
+          clima<span>tempo</span>
         </h2>
 
-        <button onClick={handleSignOut}>{loading ? "Saindo..." : "Sair"}</button>
+        <button onClick={handleSignOut}>
+          {loading ? <div className="spinner"></div> : "Sair"}
+        </button>
       </div>
     </div>
   );

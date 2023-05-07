@@ -66,7 +66,9 @@ export const SignIn = () => {
           />
         </Label>
 
-        <button className="btn-login">{!loading ? "Acessar" : "Carregando"}</button>
+        <button className="btn-login">
+          {!loading ? "Acessar" : <div className="spinner"></div>}
+        </button>
 
         <p className="infos">
           Não possui conta? <Link to="/signup">Criar conta</Link>

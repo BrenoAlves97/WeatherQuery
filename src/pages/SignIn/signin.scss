@@ -19,7 +19,7 @@
 
     h3 {
       text-align: center;
-      font-size: 2rem;
+      font-size: 2.4rem;
       margin: 2.5rem 0;
     }
 
@@ -39,6 +39,24 @@
       &:hover {
         opacity: 1;
         border-color: #092551;
+      }
+
+      .spinner {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0 auto;
+        border: 0.2rem solid transparent;
+        border-top-color: #092551;
+        border-radius: 50%;
+        animation: 0.8s turn linear infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes turn {
+        to {
+          transform: rotate(360deg);
+          opacity: 1;
+        }
       }
     }
   }
