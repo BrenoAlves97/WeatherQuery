@@ -23,11 +23,12 @@ export const useAuthentication = () => {
         };
 
         setUser(userData);
+        setSigned(true);
         setLoading(false);
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setSigned(false);
       });
   };
 

@@ -8,30 +8,31 @@ import { auth } from "../../firebase/firebaseConnection";
 
 import "./private.scss";
 
-export const Private = ({ chidlren }) => {
-  const { signed, setSigned } = useContext(UserContext);
-  const [loading, setloading] = useState(true);
+export const Private = ({ children }) => {
+  const { setUser, signed } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const isLogged = async () => {
-      const unsub = onAuthStateChanged(auth, (user) => {
+    setLoading(true);
+    const checkIsLogged = async () => {
+      onAuthStateChanged(auth, (user) => {
         if (user) {
-          let userDetails = {
+          let data = {
             email: user.email,
             uid: user.uid,
           };
 
-          localStorage.setItem("@userInfos", JSON.stringify(userDetails));
+          localStorage.setItem("@userInfo", JSON.stringify(data));
 
-          setloading(false);
-          setSigned(true);
+          setLoading(false);
         } else {
-          setloading(false);
+          setLoading(false);
+          setUser({});
         }
       });
     };
 
-    isLogged();
+    checkIsLogged();
   }, []);
 
   if (loading) {
@@ -46,5 +47,5 @@ export const Private = ({ chidlren }) => {
     return <Navigate to="/signin" />;
   }
 
-  return chidlren;
+  return children;
 };
