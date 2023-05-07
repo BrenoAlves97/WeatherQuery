@@ -9,8 +9,17 @@ import { auth } from "../../firebase/firebaseConnection";
 import "./private.scss";
 
 export const Private = ({ children }) => {
-  const { setUser, signed } = useContext(UserContext);
+  const { user, setUser, signed, setSigned } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const dataLS = localStorage.getItem("@userInfo");
+    if (dataLS) {
+      setSigned(true);
+    } else {
+      <Navigate to="/signin" />;
+    }
+  }, [user]);
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +32,6 @@ export const Private = ({ children }) => {
           };
 
           localStorage.setItem("@userInfo", JSON.stringify(data));
-
           setLoading(false);
         } else {
           setLoading(false);

@@ -7,15 +7,17 @@
   .spinner {
     width: 10rem;
     height: 10rem;
-    border: 0.5rem solid transparent;
+    border: 1rem solid transparent;
     border-top-color: #dfd8d8;
     border-radius: 50%;
-    animation: 0.5s turn linear infinite;
+    animation: 0.8s turn linear infinite;
+    opacity: 0.8;
   }
 }
 
 @keyframes turn {
   to {
     transform: rotate(360deg);
+    opacity: 1;
   }
 }
