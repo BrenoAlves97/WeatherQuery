@@ -9,7 +9,7 @@ export const Sidebar = () => {
     <div className="sidebar-container">
       <div className="sidebar-content">
         <h2>
-          clima<span>tempo</span>
+          q<span>Weather</span>
         </h2>
 
         <button onClick={handleSignOut}>
