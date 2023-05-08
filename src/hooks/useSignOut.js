@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebaseConnection";
@@ -20,6 +21,7 @@ export const useSignOut = () => {
         setUser(null);
         setLoading(false);
         navigate("/signin");
+        toast.success("Até logo! :)");
       })
       .catch((error) => {
         console.log(error);

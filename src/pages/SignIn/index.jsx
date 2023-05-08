@@ -12,7 +12,7 @@ import { Input } from "../../components/Input";
 import "./signin.scss";
 
 export const SignIn = () => {
-  const { handleLogin, loading } = useAuthentication();
+  const { handleLogin, loading, error } = useAuthentication();
   const { signed } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
@@ -33,7 +33,7 @@ export const SignIn = () => {
     };
 
     const res = await handleLogin(data);
-    console.log(res);
+    toast.success("Bem vindo! :)");
   };
 
   const clearInputs = () => {

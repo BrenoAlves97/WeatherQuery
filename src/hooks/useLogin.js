@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // firebase
 import { auth } from "../firebase/firebaseConnection";
@@ -11,6 +12,7 @@ export const useAuthentication = () => {
   const { setUser, setSigned } = useContext(UserContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(true);
 
   const handleLogin = async (data) => {
     setLoading(true);
@@ -28,9 +30,17 @@ export const useAuthentication = () => {
         navigate("/");
       })
       .catch((error) => {
+        console.log(error);
         setSigned(false);
+        if (error.code === "auth/invalid-email") {
+          toast.error("E-mail inválido! Tente novamente...");
+          setLoading(false);
+        } else if (error.code === "auth/wrong-password") {
+          toast.error("Senha não confere, tente novamente!");
+          setLoading(false);
+        }
       });
   };
 
-  return { handleLogin, loading };
+  return { handleLogin, loading, error };
 };
