@@ -1,0 +1,28 @@
+header {
+  width: 80%;
+  max-width: 30rem;
+  background: #ddd;
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  border-radius: 0.7rem;
+
+  .spinner {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0.2rem solid transparent;
+    border-top-color: #092551;
+    border-radius: 50%;
+    animation: 0.8s turn linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes turn {
+    to {
+      transform: rotate(360deg);
+      opacity: 1;
+    }
+  }
+}
