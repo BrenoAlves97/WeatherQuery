@@ -39,6 +39,9 @@ export const useAuthentication = () => {
         } else if (error.code === "auth/wrong-password") {
           toast.error("Senha não confere, tente novamente!");
           setLoading(false);
+        } else if (error.code === "auth/user-not-found") {
+          toast.error("Usuário não encontrado...");
+          setLoading(false);
         }
       });
   };
