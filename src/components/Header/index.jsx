@@ -49,7 +49,7 @@ export const Header = () => {
 
   return (
     <header>
-      <BiUser size={26} color="#141414" />
+      <BiUser size={26} color="#fff" />
       {loading ? <div className="spinner"></div> : <h2>Olá, {userNameDetail}</h2>}
     </header>
   );

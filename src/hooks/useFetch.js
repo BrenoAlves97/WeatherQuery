@@ -7,14 +7,15 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 export const useFetch = () => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState({});
+  const [cityData, setCityData] = useState({});
 
   const handleFetch = async (city) => {
     setLoading(true);
     try {
-      const res = await api.get(`?q=${city}&appid=${apiKey}&lang=pt_br`);
-      setData(res);
-      console.log(res);
+      const res = await api.get(`?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`);
+      const { data } = res;
+      setCityData(data);
+      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -22,5 +23,5 @@ export const useFetch = () => {
     }
   };
 
-  return { loading, handleFetch, data };
+  return { loading, handleFetch, cityData };
 };
