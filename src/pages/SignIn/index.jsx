@@ -33,7 +33,6 @@ export const SignIn = () => {
     };
 
     const res = await handleLogin(data);
-    toast.success("Bem vindo! :)");
   };
 
   const clearInputs = () => {

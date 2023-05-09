@@ -28,6 +28,7 @@ export const useAuthentication = () => {
         setSigned(true);
         setLoading(false);
         navigate("/");
+        toast.success("Bem vindo! :)");
       })
       .catch((error) => {
         console.log(error);
