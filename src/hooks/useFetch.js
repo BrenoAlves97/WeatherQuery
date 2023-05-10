@@ -15,7 +15,6 @@ export const useFetch = () => {
       setCityData(data);
     } catch (error) {
       toast.error("Por gentileza, digite uma cidade existente...");
-      return;
     }
   };
 
