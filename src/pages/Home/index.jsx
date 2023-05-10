@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
+
+// icons
 import { BiSearch } from "react-icons/bi";
+import { GoLocation } from "react-icons/go";
+import { BsPlus } from "react-icons/bs";
+import { TbTemperatureCelsius } from "react-icons/tb";
 
 // components
 import { Header } from "../../components/Header";
@@ -12,23 +17,29 @@ import "./home.scss";
 import { toast } from "react-toastify";
 
 export const Home = () => {
-  const { cityData, handleFetch, loading } = useFetch();
+  const { cityData, handleFetch } = useFetch();
   const [cityName, setCityName] = useState("");
-  const [cityDetails, setCityDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (cityName.length === 0) {
       toast.warn("Por favor, insira o nome de uma cidade...");
+      setLoading(false);
       return;
     }
 
-    const res = await handleFetch(cityName);
-    console.log(res);
-    setCityDetails(res);
-
-    setCityName("");
+    try {
+      const res = await handleFetch(cityName);
+      console.log(cityData);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setCityName("");
+    }
   };
 
   return (
@@ -53,6 +64,38 @@ export const Home = () => {
               </div>
             </Label>
           </form>
+
+          {loading && <div className="spinner"></div>}
+
+          {cityData && !loading && (
+            <div className="city-content">
+              <div className="about-city">
+                <p className="location">
+                  <GoLocation size={26} color="#fff" />
+                  {cityData.name}
+                </p>
+                <p className="other-infos">
+                  <span>
+                    <img
+                      width={35}
+                      src={`https://openweathermap.org/img/wn/${cityData.weather[0].icon}.png`}
+                      alt={cityData.weather[0].description}
+                    />
+                    {cityData.weather[0].description}
+                  </span>
+                  <span>
+                    {cityData.main.temp.toFixed(1)}
+                    <TbTemperatureCelsius size={23} color="#fff" />
+                  </span>
+                </p>
+              </div>
+              <div className="box-btn">
+                <button>
+                  <BsPlus size={28} color="#fff" />
+                </button>
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </div>
