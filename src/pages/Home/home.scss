@@ -1,6 +1,14 @@
 .home-container {
   padding-left: 20rem;
 
+  @media screen and (max-width: 663px) {
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 663px) {
+    padding: 1rem;
+  }
+
   .content {
     padding: 1rem;
   }
@@ -14,6 +22,10 @@
     label {
       span {
         font-size: 2.4rem;
+
+        @media screen and (max-width: 700px) {
+          font-size: 2rem;
+        }
       }
     }
 
@@ -21,6 +33,14 @@
       display: flex;
       gap: 0.2rem;
       height: 4.5rem;
+
+      @media screen and (max-width: 700px) {
+        height: 4rem;
+      }
+
+      @media screen and (max-width: 500px) {
+        height: 3.5rem;
+      }
 
       input {
         height: 100%;
@@ -58,16 +78,32 @@
       border-radius: 50%;
       animation: 0.8s turn linear infinite;
       opacity: 0.8;
+
+      @media screen and (max-width: 700px) {
+        width: 7.5rem;
+        height: 7.5rem;
+      }
+
+      @media screen and (max-width: 500px) {
+        width: 5rem;
+        height: 5rem;
+      }
     }
 
     .city-content {
-      width: 80%;
-      max-width: 70rem;
+      width: 95%;
+      max-width: 80rem;
       display: flex;
       margin: 6rem auto;
       border-radius: 0.6rem;
       padding: 0.5rem 1rem;
       background: rgba(255, 255, 255, 0.041);
+
+      @media screen and (max-width: 500px) {
+        max-width: 100%;
+        padding: 0.1rem;
+        background: 0;
+      }
 
       .about-city {
         width: 100%;
@@ -83,6 +119,14 @@
           padding: 0.5rem;
           font-size: 2rem;
           font-weight: 500;
+
+          @media screen and (max-width: 700px) {
+            font-size: 1.8rem;
+          }
+
+          img {
+            margin-left: 0.5rem;
+          }
         }
 
         .other-infos {
@@ -97,6 +141,44 @@
             font-size: 1.8rem;
             font-weight: 600;
             text-transform: capitalize;
+
+            @media screen and (max-width: 700px) {
+              font-size: 1.6rem;
+            }
+            @media screen and (max-width: 500px) {
+              font-size: 1.4rem;
+            }
+
+            svg {
+              display: flex;
+              align-items: flex-start;
+            }
+          }
+        }
+
+        .speed-and-humidity {
+          display: flex;
+          gap: 0.5rem;
+
+          span {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+
+            @media screen and (max-width: 700px) {
+              font-size: 1.6rem;
+            }
+
+            @media screen and (max-width: 500px) {
+              font-size: 1.4rem;
+            }
+
+            &:nth-child(2) {
+              gap: 0;
+            }
 
             svg {
               display: flex;
@@ -113,12 +195,16 @@
 
         button {
           background: #092551;
-          border: 0.2rem solid #ddd;
-          padding: 0.2rem 0.4rem;
+          border: 0.1rem solid #ddd;
+          padding: 0.1rem;
           border-radius: 0.4rem;
           cursor: pointer;
           transition: 0.4s all ease-in-out;
           opacity: 0.6;
+
+          @media screen and (max-width: 500px) {
+            padding: 0;
+          }
 
           &:hover {
             opacity: 1;

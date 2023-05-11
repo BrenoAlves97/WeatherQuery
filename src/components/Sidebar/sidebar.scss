@@ -5,6 +5,10 @@
   min-height: 100%;
   left: 0;
 
+  @media screen and (max-width: 663px) {
+    background: transparent;
+  }
+
   .sidebar-content {
     width: 80%;
     height: 95vh;
@@ -16,6 +20,10 @@
 
     h2 {
       font-size: 2.3rem;
+
+      @media screen and (max-width: 663px) {
+        display: none;
+      }
 
       span {
         text-transform: uppercase;
@@ -34,6 +42,13 @@
       transition: 0.5s all ease-out;
       border-radius: 0.5rem;
       font-size: 1.6rem;
+
+      @media screen and (max-width: 663px) {
+        position: fixed;
+        bottom: 5%;
+        left: 5%;
+        width: 10rem;
+      }
 
       &:hover {
         border-color: #092551;

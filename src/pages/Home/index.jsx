@@ -4,8 +4,9 @@ import { useFetch } from "../../hooks/useFetch";
 // icons
 import { BiSearch } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
-import { BsPlus } from "react-icons/bs";
+import { BsCheckLg } from "react-icons/bs";
 import { TbTemperatureCelsius } from "react-icons/tb";
+import { WiWindy, WiHumidity } from "react-icons/wi";
 
 // components
 import { Header } from "../../components/Header";
@@ -33,7 +34,6 @@ export const Home = () => {
 
     try {
       const res = await handleFetch(cityName);
-      console.log(cityData);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -71,8 +71,13 @@ export const Home = () => {
             <div className="city-content">
               <div className="about-city">
                 <p className="location">
-                  <GoLocation size={26} color="#fff" />
+                  <GoLocation size={23} color="#fff" />
                   {cityData.name}
+                  <img
+                    src={`https://flagsapi.com/${cityData.sys.country}/flat/64.png`}
+                    alt={cityData.name}
+                    width={30}
+                  ></img>
                 </p>
                 <p className="other-infos">
                   <span>
@@ -88,10 +93,20 @@ export const Home = () => {
                     <TbTemperatureCelsius size={23} color="#fff" />
                   </span>
                 </p>
+                <p className="speed-and-humidity">
+                  <span>
+                    <WiWindy size={25} color="#fff" />
+                    {cityData.wind.speed} km/h
+                  </span>
+                  <span>
+                    Umidade: {cityData.main.humidity}
+                    <WiHumidity size={25} color="#fff" />
+                  </span>
+                </p>
               </div>
               <div className="box-btn">
                 <button>
-                  <BsPlus size={28} color="#fff" />
+                  <BsCheckLg size={28} color="#fff" />
                 </button>
               </div>
             </div>

@@ -12,6 +12,7 @@ export const useFetch = () => {
     try {
       const res = await api.get(`?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`);
       const { data } = res;
+      console.log(data);
       setCityData(data);
     } catch (error) {
       toast.error("Por gentileza, digite uma cidade existente...");
