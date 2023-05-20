@@ -1,10 +1,15 @@
-import { useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+
+// firebase
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConnection";
+
+import { api } from "../../services/api";
 
 // icons
 import { BiSearch } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
-import { BsCheckLg } from "react-icons/bs";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { WiWindy, WiHumidity } from "react-icons/wi";
 
@@ -13,14 +18,24 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
+import { SearchFromDataBase } from "../../components/SearchsFromDataBase";
+
+const apiKey = import.meta.env.VITE_API_KEY;
 
 import "./home.scss";
-import { toast } from "react-toastify";
 
 export const Home = () => {
-  const { cityData, handleFetch } = useFetch();
+  // const { cityData, handleFetch } = useFetch();
+  const [cityData, setCityData] = useState(null);
+
   const [cityName, setCityName] = useState("");
+  const [item, setItem] = useState({});
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const dataLs = localStorage.getItem("@userInfo");
+    setItem(JSON.parse(dataLs));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +47,37 @@ export const Home = () => {
       return;
     }
 
-    try {
-      const res = await handleFetch(cityName);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setCityName("");
-    }
+    const getData = async () => {
+      setLoading(true);
+      await api
+        .get(`?q=${cityName}&appid=${apiKey}&units=metric&lang=pt_br`)
+        .then(async (res) => {
+          const { data } = res;
+
+          setCityData(data);
+
+          setLoading(false);
+
+          await addDoc(collection(db, "lastsearches"), {
+            emailUserSaving: item.email,
+            searchedCity: cityName,
+            createdAt: new Date(),
+          })
+            .then(() => console.log("Busca registrada"))
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => {
+          toast.error("Favor, insira uma cidade existente...");
+          console.log(error);
+          setLoading(false);
+          setCityName("");
+          return;
+        });
+    };
+    getData();
+
+    setLoading(false);
+    setCityName("");
   };
 
   return (
@@ -104,14 +142,13 @@ export const Home = () => {
                   </span>
                 </p>
               </div>
-              <div className="box-btn">
-                <button>
-                  <BsCheckLg size={28} color="#fff" />
-                </button>
-              </div>
             </div>
           )}
         </main>
+
+        <div className="searchs">
+          <SearchFromDataBase user={item} />
+        </div>
       </div>
     </div>
   );

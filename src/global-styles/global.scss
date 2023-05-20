@@ -16,3 +16,26 @@ body {
   min-height: 100vh;
   background-image: linear-gradient(to left bottom, #092551, #1a2d54, #273558, #323e5b, #3d465e);
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #ffffff #384499;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 1.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: #384499;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid #ffffff;
+}
