@@ -12,7 +12,7 @@
 ## Tech's:
 
 - HTML
-- CSS
+- SASS/SCSS
 - FIREBASE
 - REACT.JS
 - Vite
