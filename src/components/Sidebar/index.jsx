@@ -9,7 +9,7 @@ export const Sidebar = () => {
     <div className="sidebar-container">
       <div className="sidebar-content">
         <h2>
-          q<span>Weather</span>
+          Weather<span>QUERY</span>
         </h2>
 
         <button onClick={handleSignOut}>
