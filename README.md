@@ -13,6 +13,6 @@
 
 - HTML
 - SASS/SCSS
-- FIREBASE
-- REACT.JS
+- React.js
+- Firebase
 - Vite
