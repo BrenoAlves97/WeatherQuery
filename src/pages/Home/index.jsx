@@ -39,7 +39,6 @@ export const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     if (cityName.length === 0) {
       toast.warn("Por favor, insira o nome de uma cidade...");
@@ -47,15 +46,14 @@ export const Home = () => {
       return;
     }
 
+    setLoading(true);
     const getData = async () => {
-      setLoading(true);
       await api
         .get(`?q=${cityName}&appid=${apiKey}&units=metric&lang=pt_br`)
         .then(async (res) => {
           const { data } = res;
 
           setCityData(data);
-
           setLoading(false);
 
           await addDoc(collection(db, "lastsearches"), {
@@ -76,7 +74,6 @@ export const Home = () => {
     };
     getData();
 
-    setLoading(false);
     setCityName("");
   };
 
