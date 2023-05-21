@@ -12,6 +12,15 @@ export const SearchFromDataBase = () => {
 
   const [item, setItem] = useState({});
   const [loading, setLoading] = useState(false);
+  const [searchRender, setSearchRender] = useState([]);
+
+  useEffect(() => {
+    const checkListOfSearches = () => {
+      const listOfSearchs = searchs.filter((search) => search.emailUserSaving === item.email);
+      setSearchRender(listOfSearchs);
+    };
+    checkListOfSearches();
+  }, [searchs]);
 
   useEffect(() => {
     const dataLS = localStorage.getItem('@userInfo');
@@ -46,16 +55,14 @@ export const SearchFromDataBase = () => {
 
   return (
     <>
-      {!searchs.length > 0 && item ? (
+      {!searchRender.length > 0 && item ? (
         <h2 className="title">Nenhuma busca realizada...</h2>
       ) : (
         <ul className="container-searchs">
           <h2>Ultimas buscas</h2>
-          {searchs
-            .filter((city) => city.emailUserSaving === item.email)
-            .map((city, index) => (
-              <li key={index}>{city.name}</li>
-            ))}
+          {searchRender.map((city, index) => (
+            <li key={index}>{city.name}</li>
+          ))}
         </ul>
       )}
     </>
