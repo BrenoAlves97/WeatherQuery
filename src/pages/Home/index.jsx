@@ -1,39 +1,39 @@
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 // firebase
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConnection";
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConnection';
 
-import { api } from "../../services/api";
+import { api } from '../../services/api';
 
 // icons
-import { BiSearch } from "react-icons/bi";
-import { GoLocation } from "react-icons/go";
-import { TbTemperatureCelsius } from "react-icons/tb";
-import { WiWindy, WiHumidity } from "react-icons/wi";
+import { BiSearch } from 'react-icons/bi';
+import { GoLocation } from 'react-icons/go';
+import { TbTemperatureCelsius } from 'react-icons/tb';
+import { WiWindy, WiHumidity } from 'react-icons/wi';
 
 // components
-import { Header } from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
-import { Label } from "../../components/Label";
-import { Input } from "../../components/Input";
-import { SearchFromDataBase } from "../../components/SearchsFromDataBase";
+import { Header } from '../../components/Header';
+import { Sidebar } from '../../components/Sidebar';
+import { Label } from '../../components/Label';
+import { Input } from '../../components/Input';
+import { SearchFromDataBase } from '../../components/SearchsFromDataBase';
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
-import "./home.scss";
+import './home.scss';
 
 export const Home = () => {
   // const { cityData, handleFetch } = useFetch();
   const [cityData, setCityData] = useState(null);
 
-  const [cityName, setCityName] = useState("");
+  const [cityName, setCityName] = useState('');
   const [item, setItem] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const dataLs = localStorage.getItem("@userInfo");
+    const dataLs = localStorage.getItem('@userInfo');
     setItem(JSON.parse(dataLs));
   }, []);
 
@@ -41,7 +41,7 @@ export const Home = () => {
     e.preventDefault();
 
     if (cityName.length === 0) {
-      toast.warn("Por favor, insira o nome de uma cidade...");
+      toast.error('Por favor, insira o nome de uma cidade...');
       setLoading(false);
       return;
     }
@@ -56,25 +56,25 @@ export const Home = () => {
           setCityData(data);
           setLoading(false);
 
-          await addDoc(collection(db, "lastsearches"), {
+          await addDoc(collection(db, 'lastsearches'), {
             emailUserSaving: item.email,
             searchedCity: cityName,
             createdAt: new Date(),
           })
-            .then(() => console.log("Busca registrada"))
+            .then(() => console.log('Busca registrada'))
             .catch((error) => console.log(error));
         })
         .catch((error) => {
-          toast.error("Favor, insira uma cidade existente...");
+          toast.error('Favor, insira uma cidade existente...');
           console.log(error);
           setLoading(false);
-          setCityName("");
+          setCityName('');
           return;
         });
     };
     getData();
 
-    setCityName("");
+    setCityName('');
   };
 
   return (
@@ -134,7 +134,7 @@ export const Home = () => {
                     {cityData.wind.speed} km/h
                   </span>
                   <span>
-                    Umidade: {cityData.main.humidity}
+                    {cityData.main.humidity}
                     <WiHumidity size={25} color="#fff" />
                   </span>
                 </p>

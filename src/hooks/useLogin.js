@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 // firebase
-import { auth } from "../firebase/firebaseConnection";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase/firebaseConnection';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from '../contexts/UserContext';
 
 export const useAuthentication = () => {
   const { setUser, setSigned } = useContext(UserContext);
@@ -27,20 +27,20 @@ export const useAuthentication = () => {
         setUser(userData);
         setSigned(true);
         setLoading(false);
-        navigate("/");
-        toast.success("Bem vindo! :)");
+        navigate('/');
+        toast.success('Bem vindo! :)');
       })
       .catch((error) => {
         console.log(error);
         setSigned(false);
-        if (error.code === "auth/invalid-email") {
-          toast.error("E-mail inválido! Tente novamente...");
+        if (error.code === 'auth/invalid-email') {
+          toast.error('E-mail inválido! Tente novamente...');
           setLoading(false);
-        } else if (error.code === "auth/wrong-password") {
-          toast.error("Senha não confere, tente novamente!");
+        } else if (error.code === 'auth/wrong-password') {
+          toast.error('Senha não confere, tente novamente!');
           setLoading(false);
-        } else if (error.code === "auth/user-not-found") {
-          toast.error("Usuário não encontrado...");
+        } else if (error.code === 'auth/user-not-found') {
+          toast.error('Usuário não encontrado...');
           setLoading(false);
         }
       });

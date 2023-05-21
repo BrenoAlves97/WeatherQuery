@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react';
 
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from '../../contexts/UserContext';
 
-import { onSnapshot, collection, query, where, orderBy } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConnection";
+import { onSnapshot, collection, query, where, orderBy } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConnection';
 
-import "./search.scss";
+import './search.scss';
 
 export const SearchFromDataBase = () => {
   const { searchs, setSearchs } = useContext(UserContext);
@@ -14,14 +14,14 @@ export const SearchFromDataBase = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const dataLS = localStorage.getItem("@userInfo");
+    const dataLS = localStorage.getItem('@userInfo');
     const data = JSON.parse(dataLS);
     setItem(data);
 
     const getSearchs = async () => {
       setLoading(true);
 
-      const q = query(collection(db, "lastsearches"), orderBy("createdAt", "desc"));
+      const q = query(collection(db, 'lastsearches'), orderBy('createdAt', 'desc'));
       const unsub = onSnapshot(q, (snapshot) => {
         let list = [];
 
@@ -32,6 +32,7 @@ export const SearchFromDataBase = () => {
             createdAt: doc.data().createdAt,
           });
         });
+
         setSearchs(list);
       });
       setLoading(false);

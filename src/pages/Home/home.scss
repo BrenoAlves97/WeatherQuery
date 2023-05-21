@@ -97,12 +97,11 @@
       margin: 6rem auto;
       border-radius: 0.6rem;
       padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.041);
+      background: rgba(255, 255, 255, 0.01);
 
       @media screen and (max-width: 500px) {
         max-width: 100%;
         padding: 0.1rem;
-        background: 0;
       }
 
       .about-city {
@@ -111,6 +110,7 @@
         flex-direction: column;
         justify-content: center;
         word-wrap: break-word;
+        align-items: center;
 
         .location {
           display: flex;
@@ -131,7 +131,7 @@
 
         .other-infos {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.3rem;
 
           span {
             padding: 0.5rem;
@@ -143,7 +143,7 @@
             text-transform: capitalize;
 
             @media screen and (max-width: 700px) {
-              font-size: 1.6rem;
+              font-size: 1.8rem;
             }
 
             svg {
@@ -155,7 +155,7 @@
 
         .speed-and-humidity {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.3rem;
 
           span {
             padding: 0.5rem;
@@ -166,7 +166,7 @@
             font-weight: 600;
 
             @media screen and (max-width: 700px) {
-              font-size: 1.6rem;
+              font-size: 1.8rem;
             }
 
             &:nth-child(2) {

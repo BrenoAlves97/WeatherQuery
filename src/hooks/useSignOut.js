@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebaseConnection";
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebaseConnection';
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from '../contexts/UserContext';
 
 export const useSignOut = () => {
   const { setSigned, setUser } = useContext(UserContext);
@@ -16,12 +16,12 @@ export const useSignOut = () => {
     setLoading(true);
     await signOut(auth)
       .then(() => {
-        localStorage.removeItem("@userInfo");
+        localStorage.removeItem('@userInfo');
         setSigned(false);
         setUser(null);
         setLoading(false);
-        navigate("/signin");
-        toast.success("Até logo! :)");
+        navigate('/signin');
+        toast.success('Até logo! :)');
       })
       .catch((error) => {
         console.log(error);

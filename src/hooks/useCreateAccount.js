@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-import { auth, db } from "../firebase/firebaseConnection";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase/firebaseConnection';
 
 export const useCreateAccount = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export const useCreateAccount = () => {
     setLoading(true);
     await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
       .then(async () => {
-        await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, 'users'), {
           user: newUser.name,
           createdAt: new Date(),
           email: newUser.email,
@@ -23,11 +23,11 @@ export const useCreateAccount = () => {
         });
       })
       .then(() => {
-        toast.success("Usuário cadastrado!");
-        navigate("/signin");
+        toast.success('Usuário cadastrado!');
+        navigate('/signin');
       })
       .catch((error) => {
-        toast.error("Houve algum erro...");
+        toast.error('Houve algum erro...');
         console.log(error);
       })
       .finally(() => {

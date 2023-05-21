@@ -1,28 +1,28 @@
-import { useState, useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useState, useContext } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-import { useAuthentication } from "../../hooks/useLogin";
-import { UserContext } from "../../contexts/UserContext";
+import { useAuthentication } from '../../hooks/useLogin';
+import { UserContext } from '../../contexts/UserContext';
 
 // components
-import { Label } from "../../components/Label";
-import { Input } from "../../components/Input";
+import { Label } from '../../components/Label';
+import { Input } from '../../components/Input';
 
-import "./signin.scss";
+import './signin.scss';
 
 export const SignIn = () => {
   const { handleLogin, loading, error } = useAuthentication();
   const { signed } = useContext(UserContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (email.length === 0 || password.length === 0) {
-      toast.warn("Favor preencher todos os campos...");
+      toast.error('Favor preencher todos os campos...');
       clearInputs();
       return;
     }
@@ -36,8 +36,8 @@ export const SignIn = () => {
   };
 
   const clearInputs = () => {
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
   };
 
   if (signed) return <Navigate to="/" />;
@@ -66,7 +66,7 @@ export const SignIn = () => {
         </Label>
 
         <button className="btn-login">
-          {!loading ? "Acessar" : <div className="spinner"></div>}
+          {!loading ? 'Acessar' : <div className="spinner"></div>}
         </button>
 
         <p className="infos">
