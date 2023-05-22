@@ -1,6 +1,6 @@
 # Projeto 'Weather Query':
 
-## SPA que o usuário poderá consultar informações climática de cidades, apenas digitando o nome da cidade.
+## SPA que o usuário poderá consultar informações climáticas sobre a cidade informada;
 
 - Informações: Temperatura em Celsius, descrição atualizada do clima, velocidade do vento e umidade;
 - Utilizado serviços de autenticação e de banco de dados do Firebase: Authentication + Firestore;
